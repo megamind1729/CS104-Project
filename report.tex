@@ -1,0 +1,137 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{titletoc}
+
+\geometry{a4paper, margin=2cm}
+
+\title{Project Report: Python Web Crawling}
+\author{Thomas Biju Cheeramvelil}
+\date{\today}
+
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.4\textwidth]{web-crawling.jpg}\par\vspace{1cm}
+    {\scshape\LARGE Indian Institute of Technology Bombay \par}
+    \vspace{1cm}
+    {\scshape\Large Department of Computer Science\par}
+    \vspace{1.5cm}
+    {\huge\bfseries Project Report: Python Web Crawling\par}
+    \vspace{2cm}
+    {\Large\itshape Thomas Biju Cheeramvelil\par}
+
+% Bottom of the page
+    {\large \today\par}
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Web crawling is a technique used to extract information from websites by systematically navigating through web pages and collecting data. It is an essential tool for various applications such as data mining, content indexing, search engine optimization, and website analysis. This project aims to develop a web crawling script that retrieves file sizes and provides insights into the file distribution and website structure.
+
+\section{Project Scope}
+The web crawling script focuses on the following key functionalities:
+\begin{itemize}
+    \item Crawling a given URL up to a specified recursion level
+    \item Retrieving file sizes of web pages and files
+    \item Finding files and webpages of specifed extensions and domains
+    \item Providing options for filtering URLs based on criteria like file extension and domain
+\end{itemize}
+
+\section{Implementation Details}
+The web crawling script is developed using the Python programming language and utilizes various libraries and modules to achieve the desired functionalities. The following libraries are used:
+\begin{itemize}
+    \item \texttt{argparse} for handling command-line arguments
+    \item \texttt{requests} for making HTTP requests to fetch web pages
+    \item \texttt{urllib.parse} for parsing and manipulating URLs
+    \item \texttt{BeautifulSoup} for parsing HTML and extracting tags
+    \item \texttt{functools} for functional programming operations
+\end{itemize}
+
+\section{Logic}
+The web crawler implemented follows the below logical scheme for printing the webpage found for both finite and infinite level recursion: \\ 
+\begin{itemize}
+\item{If at the ith recursion level, If at the ith recursion level, a webpage is being referred by multiple webpages then that webpage will be printed only once at that particular recursion level. Also, if a webpage is found at $i$th recursion level and then even if it is found again at $j$th recursion level where $j > i$ it will not be crawled again. However, the webpage will be printed again so as to indicate that it was also obtained at that recursion level.}
+\end{itemize}
+
+\section{Functionality Overview}
+The web crawling script consists of the following key functions:
+
+\begin{itemize}
+    \item \texttt{unique\_list(list1)}: Returns a list with unique elements by reducing duplicates.
+    \item \texttt{get\_links(url)}: Retrieves tags with \texttt{href} or \texttt{src} attributes from a given URL.
+    \item \texttt{is\_internal\_link(domain, url)}: Checks if a given URL has the specified domain.
+    \item \texttt{get\_file\_extension(url)}: Retrieves the file extension from a given URL.
+    \item \texttt{crawl(url, threshold, output\_file, domain2)}: Performs the web crawling process.
+    \item \texttt{main()}: Handles command-line arguments and initiates the crawling process.
+\end{itemize}
+
+\section{Customization}
+\begin{itemize}
+\item{Displaying files of specified domains: \\
+Only files of specified domains are displayed. Specify the domains after -d to use this function. 
+}
+\item{Displaying files of specified extensions: \\
+Only files of specified extensions are displayed. Specify the domains after -d to use this function. 
+}
+\item{Sorting Files with respect to Domain, Extension, or File Size: \\
+Sorting list of displayed files with respect to file size. This will not display the file size but only sort with respect to size. Specify -s along with -x in order to get file size as well.
+}
+\item{Displaying File Size: \\
+File or webpage size is displayed along with the url of each file or webpage. Specify -f to use this function.
+}
+\end{itemize}
+
+\begin{tabular}{ | p{7 cm} | p{7 cm} | } 
+\hline 
+ \textbf{Options} & \textbf{Description} \\
+ \hline
+ \hline
+ -h, --help & show this help message and exit \\
+ \hline 
+-u URL, --url URL & URL to crawl  \\
+ \hline
+ -t THRESHOLD & provide output file(s) for storing the result\\
+ \hline
+ -d [DOMAIN ...], --domain [DOMAIN ...] & URL domain needed\\
+ \hline
+ -e [EXTENSION ...], --extension [EXTENSION ...] & Extension needed\\
+ \hline
+ -s, --sort & Sorts on given basis\\
+ \hline
+ -f, --file\_size & Displays file size\\
+ \hline
+ 
+\end{tabular}
+
+\section{Conclusion}
+In conclusion, the web crawling project provides a valuable tool for extracting data and insights from websites. The implemented script offers functionalities for retrieving file sizes, analyzing file distribution, and exploring the structure of a website. With future enhancements, it has the potential to become a versatile and powerful web crawling solution for various applications.
+
+\section{Source Code}
+The source code of the web crawler can be found in this \href{http://www.overleaf.com}{GitHub Repo} .
+% \[\]
+%
+% \begin{tabular}{ ... }
+
+% % ... fill up table
+% \end{tabular}
+
+\section{References}
+\begin{itemize}
+    \item Python Software Foundation. \textit{argparse – Parser for command-line options, arguments, and sub-commands.} Retrieved from \texttt{https://docs.python.org/3/library/argparse.html}
+    \item Python Software Foundation. \textit{urllib.parse – Parse URLs into components.} Retrieved from \texttt{https://docs.python.org/3/library/urllib.parse.html}
+    \item Requests: HTTP for Humans. \textit{https://docs.python-requests.org/en/latest/}
+    \item Beautiful Soup Documentation. Retrieved from \texttt{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}
+    \item functools — Higher-order functions and operations on callable objects. Retrieved from \texttt{https://docs.python.org/3/library/functools.html}
+\end{itemize}
+
+\end{document}
+
